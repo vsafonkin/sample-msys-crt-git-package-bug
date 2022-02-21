@@ -13,6 +13,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    - name: mingw-w64-x86_64-crt-git package version
+      run: |
+        $origPath = $env:PATH
+        $env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$origPath"
+        pacman.exe -Qi mingw-w64-x86_64-crt-git
 
     - name: Install dependencies
       run: |
