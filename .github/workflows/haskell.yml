@@ -14,10 +14,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: mingw-w64-x86_64-crt-git package version
+    - name: Update mingw-w64-x86_64-crt-git to 9.0.0.6373.5be8fcd83-2
       run: |
         $origPath = $env:PATH
         $env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$origPath"
+        pacman.exe -Syy
+        pacman.exe -S --noconfirm --noprogressbar mingw-w64-x86_64-crt-git
         pacman.exe -Qi mingw-w64-x86_64-crt-git
 
     - name: Install dependencies
